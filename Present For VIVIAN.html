@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Happy BirthDay!</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <style>
+      button:hover {
+        transition: 0, 25s;
+        border-radius: 10px;
+        text-decoration: none;
+        background: #ffffff;
+        color: #ff6b9e;
+      }
+    </style>
+    <audio id="background-music" autoplay loop>
+      <source src="song.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="birthday-card">
+      <div class="photo-gallery">
+        <div class="photo-item">
+          <img src="photo3.jpg" alt="Foto 1" />
+        </div>
+        <div class="photo-item">
+          <img src="photo6.jpg" alt="Foto 2" />
+        </div>
+        <div class="photo-item">
+          <img src="Photo1.jpg" alt="Foto 3" />
+        </div>
+        <div class="photo-item">
+          <img src="photo5.jpg" alt="Foto 4" />
+        </div>
+        <div class="photo-item">
+          <img src="photo2.jpeg" alt="Foto 5" />
+        </div>
+        <div class="photo-item">
+          <img src="photo4.jpg" alt="Foto 6" />
+        </div>
+      </div>
+
+      <div class="cake">🎂</div>
+      <h1>Selamat Ulang Tahun Yang Ke-19 VIVI!</h1>
+      <div class="message">
+        Semoga di tahun ini kamu mendapatkan <br />
+        kebahagian, kesuksesan, dan cita-cita! <br />
+        Dan meskipun banyak cobaan yang akan datang setiap harinya <br />
+        semoga kamu selalu diberi jalan dan selalu ada dalam perlindungan tuhan
+        <span style="font-size: medium">&#128519;</span>
+      </div>
+      <div class="age">Happy BirthDay!</div>
+    </div>
+
+    <script>
+      window.addEventListener("load", function () {
+        const music = document.getElementById("background-music");
+        const playButton = document.createElement("img");
+
+        // Set gambar awal (play)
+        playButton.src = "play.png"; // Ganti dengan path gambar play Anda
+
+        // Styling untuk gambar button
+        playButton.style.width = "50px"; // Sesuaikan ukuran
+        playButton.style.height = "50px";
+        playButton.style.cursor = "pointer";
+        playButton.style.margin = "10px";
+        playButton.style.boxShadow =
+          "0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)";
+        playButton.style.transition = "all 0.3s ease";
+        playButton.style.borderRadius = "20%"; // Membuat gambar bulat jika diinginkan
+
+        // Efek hover
+        playButton.onmouseover = function () {
+          playButton.style.transform = "translateY(-2px)";
+          playButton.style.boxShadow =
+            "0 7px 14px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1)";
+        };
+
+        playButton.onmouseout = function () {
+          playButton.style.transform = "translateY(0)";
+          playButton.style.boxShadow =
+            "0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)";
+        };
+
+        // Efek active saat diklik
+        playButton.onmousedown = function () {
+          playButton.style.transform = "translateY(1px)";
+          playButton.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
+        };
+
+        playButton.onmouseup = function () {
+          playButton.style.transform = "translateY(-2px)";
+          playButton.style.boxShadow =
+            "0 7px 14px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1)";
+        };
+
+        // Fungsi untuk menghandle play/pause
+        playButton.onclick = function () {
+          if (music.paused) {
+            music.play();
+            playButton.src = "play.png"; // Ganti dengan path gambar pause Anda
+          } else {
+            music.pause();
+            playButton.src = "pause.png"; // Ganti dengan path gambar play Anda
+          }
+        };
+
+        // Tambahkan tombol ke body
+        document.body.appendChild(playButton);
+
+        // Handle ketika musik selesai
+        music.addEventListener("ended", function () {
+          playButton.src = "path/to/play-button.png"; // Ganti dengan path gambar play Anda
+        });
+
+        // Handle jika ada error
+        music.addEventListener("error", function (error) {
+          console.log("Error playing music:", error);
+          playButton.src = "path/to/error-button.png"; // Opsional: gambar untuk status error
+          playButton.style.opacity = "0.5";
+          playButton.disabled = true;
+        });
+      });
+      function createConfetti() {
+        const colors = ["#ff6b9e", "#ffc3a0", "#ffeb3b", "#ffffff"];
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.style.left = Math.random() * 100 + "%";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(confetti);
+        }
+      }
+      createConfetti();
+    </script>
+  </body>
+</html>
